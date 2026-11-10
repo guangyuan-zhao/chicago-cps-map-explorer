@@ -19,3 +19,6 @@ npm-debug.log*
 # VS Code workspace settings
 .vscode/*
 !.vscode/extensions.json
+
+# Google Maps API key
+.env.local
