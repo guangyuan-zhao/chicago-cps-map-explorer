@@ -1,0 +1,21 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables and API keys
+.env
+.env.*
+!.env.example
+
+# Build output
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# macOS
+.DS_Store
+
+# VS Code workspace settings
+.vscode/*
+!.vscode/extensions.json
