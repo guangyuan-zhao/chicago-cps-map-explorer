@@ -21,4 +21,6 @@ npm-debug.log*
 !.vscode/extensions.json
 
 # Google Maps API key
-.env.local
+.env
+.env.*
+!.env.example

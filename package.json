@@ -7,7 +7,11 @@
     "test": "vitest",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cps:inspect": "node scripts/inspect-cps-api.js",
+    "cps:geojson": "node scripts/inspect-cps-geojson.js",
+    "cps:geometry": "node scripts/inspect-cps-geometries.js",
+    "cps:validate": "node scripts/validate-cps-geojson.js"
   },
   "repository": {
     "type": "git",
