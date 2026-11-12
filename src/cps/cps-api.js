@@ -71,3 +71,23 @@ export async function geocodeCPSAddress(address) {
         address
     });
 }
+
+/**
+ * Convert Web Mercator (EPSG:3857) coordinates
+ * into WGS84 longitude/latitude (EPSG:4326).
+ */
+export function webMercatorToWGS84(x, y) {
+
+    const R = 6378137;
+
+    const longitude = (x / R) * (180 / Math.PI);
+
+    const latitude =
+        (2 * Math.atan(Math.exp(y / R)) - Math.PI / 2)
+        * (180 / Math.PI);
+
+    return {
+        longitude,
+        latitude
+    };
+}

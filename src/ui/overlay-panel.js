@@ -1,12 +1,23 @@
+
 import { overlayConfig } from '../overlays/overlay-config.js';
 
-export function initializeOverlayPanel() {
+export function initializeOverlayPanel({
+    onToggle,
+    onClear
+} = {}) {
 
     const container = document.getElementById('overlay-container');
     const clearButton = document.getElementById('clear-overlays');
 
+    if (!container || !clearButton) {
+        throw new Error(
+            'Overlay panel elements were not found in index.html.'
+        );
+    }
+
     const categories = {
         attendance: 'Attendance Boundaries',
+        schools: 'School Locations',
         geographic: 'Geographic Overlays',
         political: 'Political Overlays'
     };
@@ -17,6 +28,12 @@ export function initializeOverlayPanel() {
 
         Object.entries(categories).forEach(([category, title]) => {
 
+            const overlays = overlayConfig.filter(
+                overlay => overlay.category === category
+            );
+
+            if (overlays.length === 0) return;
+
             const categorySection = document.createElement('div');
             categorySection.className = 'overlay-category';
 
@@ -24,10 +41,6 @@ export function initializeOverlayPanel() {
             heading.textContent = title;
 
             categorySection.appendChild(heading);
-
-            const overlays = overlayConfig.filter(
-                overlay => overlay.category === category
-            );
 
             overlays.forEach(overlay => {
 
@@ -40,9 +53,25 @@ export function initializeOverlayPanel() {
                 checkbox.checked = overlay.enabled;
                 checkbox.dataset.overlayId = overlay.id;
 
+                // Temporarily disable unverified data sources.
+                const unavailable =
+                    overlay.status === 'pending' ||
+                    !overlay.dataSource;
+
+                checkbox.disabled = unavailable;
+
+                if (unavailable) {
+                    label.title = 'Data source not yet configured.';
+                    label.classList.add('overlay-unavailable');
+                }
+
                 checkbox.addEventListener('change', (event) => {
 
                     overlay.enabled = event.target.checked;
+
+                    if (typeof onToggle === 'function') {
+                        onToggle(overlay.id, overlay.enabled);
+                    }
 
                     console.log(
                         `Overlay "${overlay.name}":`,
@@ -78,6 +107,10 @@ export function initializeOverlayPanel() {
         overlayConfig.forEach(overlay => {
             overlay.enabled = false;
         });
+
+        if (typeof onClear === 'function') {
+            onClear();
+        }
 
         renderOverlays();
 

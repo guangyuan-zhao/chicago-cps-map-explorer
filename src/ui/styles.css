@@ -184,6 +184,11 @@ button {
     border-radius: 3px;
 }
 
+.overlay-unavailable {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
 /* Property information */
 
 #property-information {
@@ -198,6 +203,40 @@ button {
     font-size: 13px;
     line-height: 1.5;
     color: #64748b;
+}
+
+
+/* Property information display */
+
+.property-address {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.property-info-row {
+    padding: 8px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.property-info-row:last-child {
+    border-bottom: none;
+}
+
+.property-info-label {
+    font-size: 11px;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+
+.property-info-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+    overflow-wrap: anywhere;
 }
 
 /* Map */
