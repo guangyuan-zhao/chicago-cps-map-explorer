@@ -91,3 +91,44 @@ export function webMercatorToWGS84(x, y) {
         latitude
     };
 }
+
+/**
+ * Reverse geocode WGS84 coordinates using Google Maps.
+ * Returns the most specific available street address.
+ */
+export async function reverseGeocodeCoordinates(
+    latitude,
+    longitude
+) {
+
+    const { Geocoder } =
+        await google.maps.importLibrary('geocoding');
+
+    const geocoder = new Geocoder();
+
+    const response = await geocoder.geocode({
+        location: {
+            lat: latitude,
+            lng: longitude
+        }
+    });
+
+    if (!response.results?.length) {
+        return null;
+    }
+
+    // Prefer a precise street address over a neighborhood
+    // or other general geographic description.
+    const streetAddress = response.results.find(result =>
+        result.types.includes('street_address')
+    );
+
+    const bestResult = streetAddress || response.results[0];
+
+    return {
+        address: bestResult.formatted_address,
+        placeId: bestResult.place_id,
+        resultTypes: bestResult.types,
+        locationType: bestResult.geometry.location_type
+    };
+}

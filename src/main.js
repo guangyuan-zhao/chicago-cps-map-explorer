@@ -4,7 +4,8 @@ import { initializeMap } from './map/map.js';
 
 import {
     geocodeCPSAddress,
-    webMercatorToWGS84
+    webMercatorToWGS84,
+    reverseGeocodeCoordinates
 } from './cps/cps-api.js';
 
 import { initializeOverlayPanel } from './ui/overlay-panel.js';
@@ -35,6 +36,10 @@ async function main() {
 
         // Keep track of the currently selected property marker.
         let propertyMarker = null;
+
+        // Load the modern Google Maps marker library.
+        const { AdvancedMarkerElement } =
+            await google.maps.importLibrary('marker');
 
         // Initialize overlay controls.
         initializeOverlayPanel({
@@ -165,9 +170,6 @@ async function main() {
                     propertyMarker.map = null;
                 }
 
-                const { AdvancedMarkerElement } =
-                    await google.maps.importLibrary('marker');
-
                 propertyMarker = new AdvancedMarkerElement({
                     map,
                     position,
@@ -208,6 +210,83 @@ async function main() {
             }
 
         });
+
+
+        // ==========================================
+        // Map-click property lookup
+        // ==========================================
+
+        map.addListener('click', async event => {
+
+            if (!event.latLng) return;
+
+            const latitude = event.latLng.lat();
+            const longitude = event.latLng.lng();
+
+            console.log('Map location selected:', {
+                latitude,
+                longitude
+            });
+
+            renderPropertyMessage(
+                'Retrieving CPS information for selected location...'
+            );
+
+            try {
+
+                // Retrieve CPS geographic information and street address.
+                const [propertyResult, addressResult] = await Promise.all([
+
+                    lookupProperty(longitude, latitude),
+
+                    reverseGeocodeCoordinates(latitude, longitude)
+
+                ]);
+
+                const selectedAddress =
+                    addressResult?.address || 'Selected map location';
+
+                console.log('Reverse geocoding result:', addressResult);
+
+                // Remove the previous marker.
+                if (propertyMarker) {
+                    propertyMarker.map = null;
+                }
+
+                // Place a marker at the clicked location.
+                propertyMarker = new AdvancedMarkerElement({
+                    map,
+                    position: {
+                        lat: latitude,
+                        lng: longitude
+                    },
+                    title: selectedAddress
+                });
+
+                // Update the property information panel.
+                renderPropertyInformation(
+                    selectedAddress,
+                    propertyResult
+                );
+
+                console.log('Map-click property lookup successful.');
+                console.log('Property information:', propertyResult);
+
+            } catch (error) {
+
+                console.error(
+                    'Map-click property lookup failed:',
+                    error
+                );
+
+                renderPropertyMessage(
+                    'Unable to retrieve CPS information for this location.'
+                );
+
+            }
+
+        });
+
 
         console.log('Property search initialized successfully.');
 
