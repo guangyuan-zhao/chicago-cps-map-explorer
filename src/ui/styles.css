@@ -205,7 +205,6 @@ button {
     color: #64748b;
 }
 
-
 /* Property information display */
 
 .property-address {
@@ -237,6 +236,65 @@ button {
     font-weight: 600;
     color: #1e293b;
     overflow-wrap: anywhere;
+}
+
+/* School information sections */
+
+.school-info-section {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.school-section-heading {
+    font-size: 14px;
+    font-weight: 700;
+    color: #334155;
+    margin: 0 0 9px;
+}
+
+.school-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.school-detail-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 6px 0;
+}
+
+.school-detail-label {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.school-detail-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    overflow-wrap: anywhere;
+}
+
+.school-not-found {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Property location section */
+
+.location-info-section {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.location-info-row {
+    padding: 7px 0;
 }
 
 /* Map */

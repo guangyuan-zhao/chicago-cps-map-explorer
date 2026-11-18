@@ -27,7 +27,6 @@ async function getPropertyDataset(mapName, year) {
     return propertyDatasetCache.get(key);
 }
 
-
 /**
  * Extract Polygon and MultiPolygon geometries,
  * including those nested inside GeometryCollections.
@@ -97,18 +96,63 @@ function findContainingFeature(geoJSON, longitude, latitude) {
 }
 
 /**
+ * Match an attendance boundary to the corresponding
+ * detailed school record using its school ID.
+ */
+function enrichSchool(boundaryProperties, schoolRecords) {
+
+    if (!boundaryProperties) return null;
+
+    const schoolId = String(
+        boundaryProperties.SCHOOL_ID ?? ''
+    );
+
+    const school = schoolRecords.find(record =>
+        String(record.School_ID ?? '') === schoolId
+    );
+
+    return {
+
+        // Original attendance-boundary information.
+        ...boundaryProperties,
+
+        // Detailed school information.
+        schoolDetails: school ? {
+            name: school.UnitName || school.Short_Name || null,
+            address: school.Address || null,
+            schoolId: school.School_ID || null,
+            gradesServed:
+                school.Grades_Short || school.Grades || null,
+            governance: school.Governance || null,
+            boundaryType: school.Boundary || null,
+            openStatus: school.Open_Status || null
+        } : null
+
+    };
+}
+
+/**
  * Retrieve property-related CPS geographic information.
  */
 export async function lookupProperty(longitude, latitude) {
 
-    const [elementaryData, highSchoolData, tierData] =
-        await Promise.all([
+    const [
+        elementaryData,
+        highSchoolData,
+        tierData,
+        schoolData
+    ] = await Promise.all([
 
-            getPropertyDataset('BOUNDARY_ES', 2026),
-            getPropertyDataset('BOUNDARY_HS', 2026),
-            getPropertyDataset('TIER', 2027)
+        getPropertyDataset('BOUNDARY_ES', 2026),
+        getPropertyDataset('BOUNDARY_HS', 2026),
+        getPropertyDataset('TIER', 2027),
+        getPropertyDataset('SCHOOL', 2027)
 
-        ]);
+    ]);
+
+    const schoolRecords = schoolData.features.map(
+        feature => feature.properties ?? {}
+    );
 
     // Elementary boundary.
     const elementaryFeature = findContainingFeature(
@@ -157,11 +201,20 @@ export async function lookupProperty(longitude, latitude) {
             latitude
         },
 
-        elementary: elementaryFeature?.properties ?? null,
+        elementary: enrichSchool(
+            elementaryFeature?.properties ?? null,
+            schoolRecords
+        ),
 
-        middleSchool: middleFeature?.properties ?? null,
+        middleSchool: enrichSchool(
+            middleFeature?.properties ?? null,
+            schoolRecords
+        ),
 
-        highSchool: highSchoolFeature?.properties ?? null,
+        highSchool: enrichSchool(
+            highSchoolFeature?.properties ?? null,
+            schoolRecords
+        ),
 
         tier: tierFeature?.properties ?? null
 
