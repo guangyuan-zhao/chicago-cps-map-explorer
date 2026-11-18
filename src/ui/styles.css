@@ -356,3 +356,71 @@ button {
     }
 
 }
+
+
+/* Address autocomplete */
+
+.search-container {
+    align-items: flex-start;
+}
+
+.address-input-wrapper {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+
+.address-input-wrapper input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.address-suggestions {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.address-suggestions[hidden] {
+    display: none;
+}
+
+.address-suggestion-item {
+    display: block;
+    width: 100%;
+    padding: 11px 12px;
+
+    background: #ffffff;
+    border: none;
+    border-bottom: 1px solid #e2e8f0;
+
+    color: #334155;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.address-suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.address-suggestion-item {
+    color: #334155;
+}
+
+.address-suggestion-item:hover,
+.address-suggestion-item:focus {
+    background: #dbeafe;
+    color: #1e293b;
+    outline: none;
+}

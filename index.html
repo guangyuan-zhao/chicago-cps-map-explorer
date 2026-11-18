@@ -30,22 +30,36 @@
         <main id="app-main">
 
             <aside id="sidebar">
-
+             
                 <section class="search-section">
                     <h2>Property Search</h2>
 
                     <div class="search-container">
-                        <input
-                            type="text"
-                            id="address-input"
-                            placeholder="Enter a Chicago address..."
-                        />
+
+                        <div class="address-input-wrapper">
+
+                            <input
+                                type="text"
+                                id="address-input"
+                                placeholder="Enter a Chicago address..."
+                                autocomplete="off"
+                            />
+
+                            <div
+                                id="address-suggestions"
+                                class="address-suggestions"
+                                hidden
+                            ></div>
+
+                        </div>
 
                         <button id="search-button">
                             Search
                         </button>
+
                     </div>
                 </section>
+
 
                 <section class="overlay-section">
 

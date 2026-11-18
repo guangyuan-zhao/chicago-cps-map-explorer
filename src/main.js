@@ -5,7 +5,8 @@ import { initializeMap } from './map/map.js';
 import {
     geocodeCPSAddress,
     webMercatorToWGS84,
-    reverseGeocodeCoordinates
+    reverseGeocodeCoordinates,
+    getCPSAddressSuggestions
 } from './cps/cps-api.js';
 
 import { initializeOverlayPanel } from './ui/overlay-panel.js';
@@ -88,6 +89,15 @@ async function main() {
 
         console.log('Overlay controls initialized successfully.');
 
+        // Test CPS address suggestions.
+        console.log('Testing CPS address suggestions...');
+
+        const suggestions = await getCPSAddressSuggestions(
+            '42 W Madi'
+        );
+
+        console.log('CPS address suggestions:');
+        console.dir(suggestions, { depth: null });
 
         // ==========================================
         // Residential property search
@@ -96,9 +106,133 @@ async function main() {
         const addressInput = document.getElementById('address-input');
         const searchButton = document.getElementById('search-button');
 
-        async function searchProperty() {
+
+        // ==========================================
+        // Address autocomplete
+        // ==========================================
+
+        const suggestionsContainer = document.getElementById(
+            'address-suggestions'
+        );
+
+        let selectedAddressSuggestion = null;
+        let suggestionsTimer = null;
+        let suggestionsRequestId = 0;
+
+        function hideAddressSuggestions() {
+            suggestionsContainer.replaceChildren();
+            suggestionsContainer.hidden = true;
+        }
+
+        function renderAddressSuggestions(suggestions) {
+
+            suggestionsContainer.replaceChildren();
+
+            const addressSuggestions = suggestions.filter(
+                suggestion => !suggestion.isCollection
+            );
+
+            if (addressSuggestions.length === 0) {
+                hideAddressSuggestions();
+                return;
+            }
+
+            addressSuggestions.forEach(suggestion => {
+
+                const button = document.createElement('button');
+
+                button.type = 'button';
+                button.className = 'address-suggestion-item';
+                button.textContent = suggestion.text;
+
+                button.addEventListener('click', () => {
+
+                    addressInput.value = suggestion.text;
+
+                    selectedAddressSuggestion = suggestion;
+
+                    hideAddressSuggestions();
+
+                    console.log(
+                        'Selected address suggestion:',
+                        suggestion
+                    );
+
+                });
+
+                suggestionsContainer.appendChild(button);
+
+            });
+
+            suggestionsContainer.hidden = false;
+        }
+
+        addressInput.addEventListener('input', () => {
 
             const address = addressInput.value.trim();
+
+            selectedAddressSuggestion = null;
+
+            clearTimeout(suggestionsTimer);
+
+            const requestId = ++suggestionsRequestId;
+
+            if (address.length < 3) {
+                hideAddressSuggestions();
+                return;
+            }
+
+            suggestionsTimer = setTimeout(async () => {
+
+                try {
+
+                    const suggestions =
+                        await getCPSAddressSuggestions(address);
+
+                    // Ignore outdated responses.
+                    if (requestId !== suggestionsRequestId) return;
+
+                    renderAddressSuggestions(suggestions);
+
+                } catch (error) {
+
+                    console.error(
+                        'Address suggestions failed:',
+                        error
+                    );
+
+                    hideAddressSuggestions();
+
+                }
+
+            }, 300);
+
+        });
+
+        addressInput.addEventListener('keydown', event => {
+
+            if (event.key === 'Escape') {
+                hideAddressSuggestions();
+            }
+
+        });
+
+        document.addEventListener('click', event => {
+
+            if (!event.target.closest('.search-container')) {
+                hideAddressSuggestions();
+            }
+
+        });
+
+        async function searchProperty() {
+
+            const address = (
+                selectedAddressSuggestion?.text ||
+                addressInput.value.trim()
+            );
+
+            hideAddressSuggestions();
 
             if (!address) {
                 renderPropertyMessage(

@@ -132,3 +132,23 @@ export async function reverseGeocodeCoordinates(
         locationType: bestResult.geometry.location_type
     };
 }
+
+
+/**
+ * Retrieve address suggestions from the CPS Geocoder.
+ */
+export async function getCPSAddressSuggestions(address) {
+
+    if (!address || address.trim().length < 3) {
+        return [];
+    }
+
+    const response = await cpsRequest(
+        'Geocoder/AddressSuggestions',
+        {
+            address: address.trim()
+        }
+    );
+
+    return response.suggestions ?? [];
+}
