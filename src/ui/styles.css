@@ -429,3 +429,16 @@ button {
     background: #dbeafe;
     color: #1e293b;
 }
+
+/* Override the app's general button styling inside autocomplete */
+.search-container .address-suggestions .address-suggestion-item {
+    background: #ffffff;
+    color: #334155;
+}
+
+.search-container .address-suggestions .address-suggestion-item:hover,
+.search-container .address-suggestions .address-suggestion-item:focus,
+.search-container .address-suggestions .address-suggestion-item.is-active {
+    background: #dbeafe;
+    color: #1e293b;
+}
