@@ -424,3 +424,8 @@ button {
     color: #1e293b;
     outline: none;
 }
+
+.address-suggestion-item.is-active {
+    background: #dbeafe;
+    color: #1e293b;
+}

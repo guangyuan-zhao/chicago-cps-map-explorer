@@ -116,12 +116,20 @@ async function main() {
         );
 
         let selectedAddressSuggestion = null;
+        let activeSuggestionIndex = -1;
         let suggestionsTimer = null;
         let suggestionsRequestId = 0;
 
         function hideAddressSuggestions() {
             suggestionsContainer.replaceChildren();
             suggestionsContainer.hidden = true;
+            activeSuggestionIndex = -1;
+        }
+
+        function selectAddressSuggestion(suggestion) {
+            addressInput.value = suggestion.text;
+            selectedAddressSuggestion = suggestion;
+            hideAddressSuggestions();
         }
 
         function renderAddressSuggestions(suggestions) {
@@ -137,33 +145,24 @@ async function main() {
                 return;
             }
 
-            addressSuggestions.forEach(suggestion => {
+            addressSuggestions.forEach((suggestion, index) => {
 
                 const button = document.createElement('button');
 
                 button.type = 'button';
                 button.className = 'address-suggestion-item';
                 button.textContent = suggestion.text;
+                button.setAttribute('role', 'option');
 
                 button.addEventListener('click', () => {
-
-                    addressInput.value = suggestion.text;
-
-                    selectedAddressSuggestion = suggestion;
-
-                    hideAddressSuggestions();
-
-                    console.log(
-                        'Selected address suggestion:',
-                        suggestion
-                    );
-
+                    selectAddressSuggestion(suggestion);
                 });
 
                 suggestionsContainer.appendChild(button);
 
             });
 
+            activeSuggestionIndex = -1;
             suggestionsContainer.hidden = false;
         }
 
@@ -211,9 +210,56 @@ async function main() {
 
         addressInput.addEventListener('keydown', event => {
 
-            if (event.key === 'Escape') {
+            const suggestionButtons = [
+                ...suggestionsContainer.querySelectorAll(
+                    '.address-suggestion-item'
+                )
+            ];
+
+            if (event.key === 'ArrowDown' && suggestionButtons.length > 0) {
+                event.preventDefault();
+
+                activeSuggestionIndex =
+                    (activeSuggestionIndex + 1) % suggestionButtons.length;
+
+            } else if (
+                event.key === 'ArrowUp' &&
+                suggestionButtons.length > 0
+            ) {
+                event.preventDefault();
+
+                activeSuggestionIndex =
+                    activeSuggestionIndex <= 0
+                    ? suggestionButtons.length - 1
+                    : activeSuggestionIndex - 1;
+
+            } else if (event.key === 'Enter') {
+
+                if (
+                    !suggestionsContainer.hidden &&
+                    activeSuggestionIndex >= 0 &&
+                    suggestionButtons[activeSuggestionIndex]
+                ) {
+                    event.preventDefault();
+
+                    selectAddressSuggestion({
+                        text: suggestionButtons[activeSuggestionIndex].textContent
+                    });
+
+                } else {
+                    searchProperty();
+                }
+
+            } else if (event.key === 'Escape') {
                 hideAddressSuggestions();
             }
+
+            suggestionButtons.forEach((button, index) => {
+                button.classList.toggle(
+                    'is-active',
+                    index === activeSuggestionIndex
+                );
+            });
 
         });
 
@@ -335,15 +381,6 @@ async function main() {
 
         // Search button click.
         searchButton.addEventListener('click', searchProperty);
-
-        // Allow Enter key to trigger search.
-        addressInput.addEventListener('keydown', event => {
-
-            if (event.key === 'Enter') {
-                searchProperty();
-            }
-
-        });
 
 
         // ==========================================
