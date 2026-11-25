@@ -243,7 +243,10 @@ function addNetworkClickInteraction(map, layer) {
     });
 }
 
-function addNetworkMarkers(map, overlayId, features, color) {
+async function addNetworkMarkers(map, overlayId, features, color) {
+    const { AdvancedMarkerElement } =
+        await google.maps.importLibrary('marker');
+    
     const markers = [];
     const seenNetworks = new Set();
 
@@ -264,27 +267,31 @@ function addNetworkMarkers(map, overlayId, features, color) {
 
         seenNetworks.add(networkNumber);
 
-        const marker = new google.maps.Marker({
+        const circle = document.createElement('div');
+        circle.textContent = networkNumber;
+        circle.style.cssText = `
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            border-radius: 50%;
+            background: ${color};
+            border: 2px solid white;
+            color: white;
+            font: bold 14px Arial, sans-serif;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+        `;
+
+        const marker = new google.maps.marker.AdvancedMarkerElement({
             map,
             position: { lat, lng },
-            clickable: false,
             title: `Network ${networkNumber}`,
-            icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                scale: 14,
-                fillColor: color,
-                fillOpacity: 1,
-                strokeColor: '#FFFFFF',
-                strokeWeight: 2
-            },
-            label: {
-                text: networkNumber,
-                color: '#FFFFFF',
-                fontSize: '12px',
-                fontWeight: 'bold'
-            }
+            content: circle
         });
 
+        marker.append(circle);
         markers.push(marker);
     }
 
@@ -364,7 +371,7 @@ export async function showOverlay(map, overlayId) {
             overlayId === 'elementary-networks' ||
             overlayId === 'high-school-networks'
         ) {
-            addNetworkMarkers(
+            await addNetworkMarkers(
                 map,
                 overlayId,
                 filteredData.features,
@@ -408,7 +415,7 @@ export function hideOverlay(overlayId) {
     const markers = activeNetworkMarkers.get(overlayId) ?? [];
 
     for (const marker of markers) {
-        marker.setMap(null);
+        marker.map = null;
     }
 
     activeNetworkMarkers.delete(overlayId);
