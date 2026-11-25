@@ -319,7 +319,10 @@ async function main() {
                         `Do you want to continue?`
                     );
 
-                    if (!confirmed) return;
+                    if (!confirmed) {
+                        renderPropertyMessage('Search cancelled. Please check the address and try again.');
+                        return;
+                    }
                 }
 
                 // Step 3: Convert Web Mercator to WGS84.
