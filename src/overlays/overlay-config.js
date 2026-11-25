@@ -50,7 +50,10 @@ export const overlayConfig = [
         enabled: false,
         color: '#8E44AD',
         opacity: 0.25,
-        status: 'pending'
+        dataSource: {
+            mapName: 'BOUNDARY_CS',
+            year: 2023
+        }
     },
 
     // ==========================================
@@ -76,7 +79,10 @@ export const overlayConfig = [
         enabled: false,
         color: '#C0392B',
         opacity: 0.20,
-        status: 'pending'
+        dataSource: {
+            mapName: 'NETWORK_HS',
+            year: 2023
+        }
     },
     {
         id: 'safe-passage',
@@ -85,7 +91,10 @@ export const overlayConfig = [
         enabled: false,
         color: '#F39C12',
         opacity: 0.80,
-        status: 'pending'
+        dataSource: {
+            mapName: 'SAFE',
+            year: 2023
+        }
     },
     {
         id: 'cps-tiers',
@@ -107,7 +116,10 @@ export const overlayConfig = [
         enabled: false,
         color: '#388E3C',
         opacity: 0.20,
-        status: 'pending'
+        dataSource: {
+            mapName: 'COMMUNITY',
+            year: 2020
+        }
     },
     {
         id: 'zip-codes',
@@ -116,7 +128,10 @@ export const overlayConfig = [
         enabled: false,
         color: '#16A085',
         opacity: 0.20,
-        status: 'pending'
+        dataSource: {
+            mapName: 'ZIP',
+            year: 2020
+        }
     },
     {
         id: 'transit',
@@ -183,7 +198,10 @@ export const overlayConfig = [
         enabled: false,
         color: '#34495E',
         opacity: 0.20,
-        status: 'pending'
+        dataSource: {
+            mapName: 'WARD',
+            year: 2024
+        }
     },
     {
         id: 'il-house',
@@ -192,7 +210,10 @@ export const overlayConfig = [
         enabled: false,
         color: '#E67E22',
         opacity: 0.20,
-        status: 'pending'
+        dataSource: {
+            mapName: 'HOUSE',
+            year: 2021
+        }
     },
     {
         id: 'il-senate',
@@ -201,7 +222,10 @@ export const overlayConfig = [
         enabled: false,
         color: '#C0392B',
         opacity: 0.20,
-        status: 'pending'
+        dataSource: {
+            mapName: 'SENATE',
+            year: 2021
+        }
     },
     {
         id: 'congressional',
@@ -210,7 +234,22 @@ export const overlayConfig = [
         enabled: false,
         color: '#8E44AD',
         opacity: 0.20,
-        status: 'pending'
-    }
+        dataSource: {
+            mapName: 'CONGRESSIONAL',
+            year: 2021
+        }
+    },
+    {
+        id: 'lsc-boundaries',
+        name: 'Local School Council Boundaries',
+        category: 'political',
+        enabled: false,
+        color: '#6E6E6E',
+        opacity: 0.12,
+        dataSource: {
+            mapName: 'LSC',
+            year: 2022
+        }
+    },
 
 ];

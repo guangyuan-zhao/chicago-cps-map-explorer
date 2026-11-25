@@ -7,6 +7,7 @@ const datasetCache = new Map();
 
 // Keep each displayed overlay independent.
 const activeLayers = new Map();
+const activeNetworkMarkers = new Map();
 
 // Distinct colors for CPS tier categories.
 const tierColors = {
@@ -119,19 +120,12 @@ function filterGeoJSON(data, filter) {
  */
 
 function getOverlayStyle(overlay) {
-
     return feature => {
-
         const isTier = overlay.styleBy === 'Tier';
-
-        // Use original CPS styling when available.
-        const fillColor = isTier
-            ? feature.getProperty('fillColor') || overlay.color
-            : overlay.color;
-
-        const fillOpacity = isTier
-            ? Number(feature.getProperty('fillOpacity') ?? overlay.opacity)
-            : overlay.opacity;
+        const geometryType = feature.getGeometry()?.getType();
+        const isLine =
+            geometryType === 'LineString' ||
+            geometryType === 'MultiLineString';
 
         const strokeColor = isTier
             ? feature.getProperty('strokeColor') || overlay.color
@@ -139,11 +133,32 @@ function getOverlayStyle(overlay) {
 
         const strokeOpacity = isTier
             ? Number(feature.getProperty('strokeOpacity') ?? 0.9)
-            : 0.9;
+            : isLine
+                ? overlay.opacity
+                : 0.9;
 
         const strokeWeight = isTier
             ? Number(feature.getProperty('strokeWeight') ?? 1)
-            : 1.5;
+            : isLine
+                ? 3
+                : 1.5;
+
+        if (isLine) {
+            return {
+                strokeColor,
+                strokeOpacity,
+                strokeWeight,
+                clickable: true
+            };
+        }
+
+        const fillColor = isTier
+            ? feature.getProperty('fillColor') || overlay.color
+            : overlay.color;
+
+        const fillOpacity = isTier
+            ? Number(feature.getProperty('fillOpacity') ?? overlay.opacity)
+            : overlay.opacity;
 
         return {
             fillColor,
@@ -189,6 +204,94 @@ function addTierHoverInteraction(map, layer) {
 }
 
 /**
+ * Show Network click information
+ */
+function addNetworkClickInteraction(map, layer) {
+    const infoWindow = new google.maps.InfoWindow();
+
+    layer.addListener('click', event => {
+        const feature = event.feature;
+        const get = key => feature.getProperty(key) ?? '';
+
+        const content = document.createElement('div');
+        content.style.minWidth = '240px';
+
+        const title = document.createElement('div');
+        title.textContent = get('Name');
+        title.style.fontSize = '18px';
+        title.style.fontWeight = '600';
+        title.style.color = '#2864c8';
+        content.appendChild(title);
+
+        const addLine = (label, value) => {
+            if (!value) return;
+
+            const line = document.createElement('div');
+            const strong = document.createElement('strong');
+            strong.textContent = `${label}: `;
+            line.append(strong, document.createTextNode(value));
+            content.appendChild(line);
+        };
+
+        addLine('Address', get('Address'));
+        addLine('Chief of Schools', get('Admin'));
+        addLine('Phone', get('Phone'));
+
+        infoWindow.setContent(content);
+        infoWindow.setPosition(event.latLng);
+        infoWindow.open({ map });
+    });
+}
+
+function addNetworkMarkers(map, overlayId, features, color) {
+    const markers = [];
+    const seenNetworks = new Set();
+
+    for (const feature of features) {
+        const properties = feature.properties ?? {};
+        const networkNumber = String(properties.NetworkNum ?? '').trim();
+        const lat = Number(properties.Lat);
+        const lng = Number(properties.Long);
+
+        if (
+            !networkNumber ||
+            !Number.isFinite(lat) ||
+            !Number.isFinite(lng) ||
+            seenNetworks.has(networkNumber)
+        ) {
+            continue;
+        }
+
+        seenNetworks.add(networkNumber);
+
+        const marker = new google.maps.Marker({
+            map,
+            position: { lat, lng },
+            clickable: false,
+            title: `Network ${networkNumber}`,
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 14,
+                fillColor: color,
+                fillOpacity: 1,
+                strokeColor: '#FFFFFF',
+                strokeWeight: 2
+            },
+            label: {
+                text: networkNumber,
+                color: '#FFFFFF',
+                fontSize: '12px',
+                fontWeight: 'bold'
+            }
+        });
+
+        markers.push(marker);
+    }
+
+    activeNetworkMarkers.set(overlayId, markers);
+}
+
+/**
  * Display an overlay on Google Maps.
  */
 export async function showOverlay(map, overlayId) {
@@ -226,6 +329,18 @@ export async function showOverlay(map, overlayId) {
         filter
     );
 
+    if (
+        overlayId === 'elementary-networks' ||
+        overlayId === 'high-school-networks'
+    ) {
+        console.log(`${overlay.name} sample properties:`);
+        console.table(
+            filteredData.features
+                .slice(0, 3)
+                .map(feature => feature.properties)
+        );
+    }
+
     if (filteredData.features.length === 0) {
         console.warn(`No features found for ${overlay.name}.`);
         return;
@@ -243,6 +358,25 @@ export async function showOverlay(map, overlayId) {
         layer.addGeoJson(filteredData);
         if (overlay.styleBy === 'Tier') {
             addTierHoverInteraction(map, layer);
+        }
+
+        if (
+            overlayId === 'elementary-networks' ||
+            overlayId === 'high-school-networks'
+        ) {
+            addNetworkMarkers(
+                map,
+                overlayId,
+                filteredData.features,
+                overlay.color
+            );
+        }
+
+        if (
+            overlayId === 'elementary-networks' ||
+            overlayId === 'high-school-networks'
+        ) {
+            addNetworkClickInteraction(map, layer);
         }
 
         activeLayers.set(overlayId, layer);
@@ -270,6 +404,14 @@ export function hideOverlay(overlayId) {
     if (!layer) return;
 
     layer.setMap(null);
+
+    const markers = activeNetworkMarkers.get(overlayId) ?? [];
+
+    for (const marker of markers) {
+        marker.setMap(null);
+    }
+
+    activeNetworkMarkers.delete(overlayId);
 
     activeLayers.delete(overlayId);
 

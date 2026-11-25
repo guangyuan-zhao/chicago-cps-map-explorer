@@ -1,0 +1,562 @@
+[
+  {
+    "mapID": 16,
+    "mapDescription": "Elementary_Attendance_1920",
+    "mapName": "BOUNDARY_ES",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2019-09-19T11:34:15.35"
+  },
+  {
+    "mapID": 18,
+    "mapDescription": "CPSNetworks2013_2014",
+    "mapName": "NETWORK_ES",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2019-09-19T11:35:29.843"
+  },
+  {
+    "mapID": 19,
+    "mapDescription": "CPSNetworks_HS",
+    "mapName": "NETWORK_HS",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2019-09-19T11:35:34.547"
+  },
+  {
+    "mapID": 20,
+    "mapDescription": "High_School_Attendance_1920",
+    "mapName": "BOUNDARY_HS",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2019-09-19T11:35:39.053"
+  },
+  {
+    "mapID": 21,
+    "mapDescription": "Charter_Overlay_Boundaries_1920",
+    "mapName": "BOUNDARY_CS",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2019-09-19T11:35:43.947"
+  },
+  {
+    "mapID": 22,
+    "mapDescription": "ILHOUSE2016_CLIP",
+    "mapName": "HOUSE",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2023-02-17T10:59:37.447"
+  },
+  {
+    "mapID": 23,
+    "mapDescription": "ILSENATE2014_CLIP",
+    "mapName": "SENATE",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2023-02-17T10:59:41.823"
+  },
+  {
+    "mapID": 24,
+    "mapDescription": "SafePassage2019_2020",
+    "mapName": "SAFE",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2019-09-19T11:35:58.763"
+  },
+  {
+    "mapID": 25,
+    "mapDescription": "Units2019_20",
+    "mapName": "SCHOOL",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2019-09-19T11:36:04.857"
+  },
+  {
+    "mapID": 26,
+    "mapDescription": "USCONGRESS_115TH_2016",
+    "mapName": "CONGRESSIONAL",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2019-09-19T11:38:23.16"
+  },
+  {
+    "mapID": 27,
+    "mapDescription": "WARDS_2015_FINAL",
+    "mapName": "WARD",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2023-02-17T10:59:45.413"
+  },
+  {
+    "mapID": 28,
+    "mapDescription": "CompassGIS.DBO.COMMAREA_NoOHare",
+    "mapName": "COMMUNITY",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2019-09-19T11:38:35.77"
+  },
+  {
+    "mapID": 29,
+    "mapDescription": "ZIPCODE",
+    "mapName": "ZIP",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2019-09-19T11:38:41.09"
+  },
+  {
+    "mapID": 30,
+    "mapDescription": "LSC_VotingDistricts_2018_2020_ForKML",
+    "mapName": "LSC",
+    "year": 2019,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2019-09-19T11:38:45.743"
+  },
+  {
+    "mapID": 32,
+    "mapDescription": "Census_Tract_Tier_FY19_for_FY21",
+    "mapName": "TIER",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2019-11-21T10:58:50.147"
+  },
+  {
+    "mapID": 33,
+    "mapDescription": "LSC_VotingDistricts_2020_2022_FINAL",
+    "mapName": "LSC",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2020-03-17T15:28:10.677"
+  },
+  {
+    "mapID": 34,
+    "mapDescription": "Units1920_ForKML",
+    "mapName": "MEAL",
+    "year": 2020,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2020-04-10T11:26:02.453"
+  },
+  {
+    "mapID": 35,
+    "mapDescription": "CompassGIS.DBO.ES_ZONES_SRA",
+    "mapName": "ARA",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2020-08-11T15:56:28.937"
+  },
+  {
+    "mapID": 36,
+    "mapDescription": "ES_MS_BOUND_2021_MERGE_ForOverlay_SIMPLIFY",
+    "mapName": "BOUNDARY_ES",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2020-08-17T11:09:45.073"
+  },
+  {
+    "mapID": 37,
+    "mapDescription": "High_School_Attendance_2021_SIMPLIFY",
+    "mapName": "BOUNDARY_HS",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2020-08-17T11:15:24.35"
+  },
+  {
+    "mapID": 38,
+    "mapDescription": "Units2020_21_DRAFT",
+    "mapName": "SCHOOL",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2020-08-21T14:58:35.193"
+  },
+  {
+    "mapID": 40,
+    "mapDescription": "Census_Tract_Tier_FY20_for_FY22",
+    "mapName": "TIER",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2023-02-02T18:13:48.567"
+  },
+  {
+    "mapID": 42,
+    "mapDescription": "RemoteLearning_Fall2021",
+    "mapName": "REMOTE",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2020-12-18T13:39:32.57"
+  },
+  {
+    "mapID": 43,
+    "mapDescription": "COVID-19_Vaccination_Locations",
+    "mapName": "VACCINATION",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2021-02-01T12:36:11.223"
+  },
+  {
+    "mapID": 44,
+    "mapDescription": "Pediatric COVID-19 Testing Sites",
+    "mapName": "COVID_TESTING",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2021-02-10T16:55:44.33"
+  },
+  {
+    "mapID": 46,
+    "mapDescription": "COVID-19 Vaccination Sites",
+    "mapName": "COVID_VACCINATION",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2021-07-29T12:26:24.297"
+  },
+  {
+    "mapID": 48,
+    "mapDescription": "CompassGIS.DBO.High_School_Attendance_2122",
+    "mapName": "BOUNDARY_HS",
+    "year": 2022,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2021-10-04T15:27:07.017"
+  },
+  {
+    "mapID": 49,
+    "mapDescription": "Elementary_Attendance_2122_M2",
+    "mapName": "BOUNDARY_ES",
+    "year": 2022,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2021-10-04T15:27:20.43"
+  },
+  {
+    "mapID": 50,
+    "mapDescription": "CompassGIS.DBO.Charter_Overlay_Boundaries_1920",
+    "mapName": "BOUNDARY_CS",
+    "year": 2022,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2021-10-04T15:27:39.883"
+  },
+  {
+    "mapID": 54,
+    "mapDescription": "Safe Haven Sites",
+    "mapName": "SAFE_HAVEN",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2021-11-09T15:38:17.767"
+  },
+  {
+    "mapID": 62,
+    "mapDescription": "DFSS_Schools_Geocode_Geocoded_v3",
+    "mapName": "DFSS",
+    "year": 2022,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2022-04-21T11:00:33.133"
+  },
+  {
+    "mapID": 66,
+    "mapDescription": "Units2022_23_07_19.kml",
+    "mapName": "SCHOOL",
+    "year": 2022,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2022-07-20T16:22:17.983"
+  },
+  {
+    "mapID": 69,
+    "mapDescription": "Charter_Overlay_Boundaries_2223",
+    "mapName": "BOUNDARY_CS",
+    "year": 2023,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2022-08-08T10:48:57.52"
+  },
+  {
+    "mapID": 70,
+    "mapDescription": "Elementary_Attendance_2223",
+    "mapName": "BOUNDARY_ES",
+    "year": 2023,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2022-08-08T10:51:14.793"
+  },
+  {
+    "mapID": 78,
+    "mapDescription": "ES_MS_BOUND_2223_MERGE_ForOverlay.kml",
+    "mapName": "BOUNDARY_ES",
+    "year": 2023,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2022-10-17T15:53:02.73"
+  },
+  {
+    "mapID": 79,
+    "mapDescription": "HS_Bound_2223_ForOverlay_update.kml",
+    "mapName": "BOUNDARY_HS",
+    "year": 2023,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2022-10-17T16:38:41.183"
+  },
+  {
+    "mapID": 93,
+    "mapDescription": "WARDS_2023_FINAL_02.15.23.kml",
+    "mapName": "WARD",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2023-02-17T10:50:49.713"
+  },
+  {
+    "mapID": 99,
+    "mapDescription": "Units2022_23_02.16.23",
+    "mapName": "SCHOOL",
+    "year": 2023,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2023-03-27T10:21:32.54"
+  },
+  {
+    "mapID": 118,
+    "mapDescription": "Census_Tract_Tier_FY22_for_FY24",
+    "mapName": "TIER",
+    "year": 2024,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2023-09-08T12:44:32.54"
+  },
+  {
+    "mapID": 124,
+    "mapDescription": "USCONGRESS_118TH_2023_CLIP",
+    "mapName": "CONGRESSIONAL",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2023-10-20T12:35:04.91"
+  },
+  {
+    "mapID": 127,
+    "mapDescription": "LSC_VotingDistricts_120623",
+    "mapName": "LSC",
+    "year": 2022,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2023-12-08T10:09:46.29"
+  },
+  {
+    "mapID": 137,
+    "mapDescription": "SafePassage2023_24_FINAL",
+    "mapName": "SAFE",
+    "year": 2023,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2024-05-08T22:34:32.473"
+  },
+  {
+    "mapID": 141,
+    "mapDescription": "ERSB_20_Sub_District_Project",
+    "mapName": "ESRB",
+    "year": 2025,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2024-06-06T10:53:38.967"
+  },
+  {
+    "mapID": 148,
+    "mapDescription": "Units2024_24_07092024",
+    "mapName": "SCHOOL",
+    "year": 2024,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2024-07-15T04:09:21.453"
+  },
+  {
+    "mapID": 149,
+    "mapDescription": "Elementary_MiddleSchool_Attendance_2425_07092024",
+    "mapName": "BOUNDARY_ES",
+    "year": 2024,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2024-07-15T04:12:51.45"
+  },
+  {
+    "mapID": 152,
+    "mapDescription": "Tiers_SY2425_ITS_final",
+    "mapName": "TIER",
+    "year": 2025,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2024-09-05T14:31:47.67"
+  },
+  {
+    "mapID": 154,
+    "mapDescription": "High_School_Attendance_2526",
+    "mapName": "BOUNDARY_HS",
+    "year": 2025,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2024-09-18T13:53:16.097"
+  },
+  {
+    "mapID": 157,
+    "mapDescription": "High_School_Attendance_2425",
+    "mapName": "BOUNDARY_HS",
+    "year": 2024,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2024-11-26T14:32:57.843"
+  },
+  {
+    "mapID": 159,
+    "mapDescription": "Units2024_25_03142025.kml",
+    "mapName": "SCHOOL",
+    "year": 2025,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-03-18T13:31:49.93"
+  },
+  {
+    "mapID": 161,
+    "mapDescription": "Units2024_25_03142025.kml",
+    "mapName": "CPS_PREK",
+    "year": 2022,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-04-08T11:21:07.94"
+  },
+  {
+    "mapID": 163,
+    "mapDescription": "CPSNetworksHS_004042025",
+    "mapName": "NETWORK_HS",
+    "year": 2023,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-04-14T12:24:00.857"
+  },
+  {
+    "mapID": 172,
+    "mapDescription": "Units2025_26_07232025",
+    "mapName": "SCHOOL",
+    "year": 2026,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-08-15T09:57:49.94"
+  },
+  {
+    "mapID": 174,
+    "mapDescription": "TIERS_SY2526_ITS_2",
+    "mapName": "TIER",
+    "year": 2026,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-08-20T10:25:07.26"
+  },
+  {
+    "mapID": 175,
+    "mapDescription": "ILHOUSE2021_CLIP_08112025",
+    "mapName": "HOUSE",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-08-20T11:28:10.533"
+  },
+  {
+    "mapID": 176,
+    "mapDescription": "ILSENATE2021_CLIP_08112025",
+    "mapName": "SENATE",
+    "year": 2021,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-08-20T11:28:16.12"
+  },
+  {
+    "mapID": 177,
+    "mapDescription": "ES_MS_Attendance_Boundary_2627",
+    "mapName": "BOUNDARY_ES",
+    "year": 2026,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-09-05T16:47:09.073"
+  },
+  {
+    "mapID": 181,
+    "mapDescription": "ES_MS_Attendance_Boundary_2526_2",
+    "mapName": "BOUNDARY_ES",
+    "year": 2025,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-09-11T13:42:53.49"
+  },
+  {
+    "mapID": 182,
+    "mapDescription": "ES_MS_Attendance_Boundary_2627",
+    "mapName": "BOUNDARY_ES",
+    "year": 2026,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-09-11T13:43:10.547"
+  },
+  {
+    "mapID": 185,
+    "mapDescription": "High_School_Attendance_2526_LittleVillageCampus",
+    "mapName": "BOUNDARY_HS",
+    "year": 2025,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-09-22T15:21:18.963"
+  },
+  {
+    "mapID": 187,
+    "mapDescription": "ERSB_2024_09232025",
+    "mapName": "ERSB",
+    "year": 2025,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-09-23T13:32:08.037"
+  },
+  {
+    "mapID": 189,
+    "mapDescription": "High_School_Attendance_2526_LittleVillageCampus",
+    "mapName": "BOUNDARY_HS",
+    "year": 2026,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-09-23T16:13:25.75"
+  },
+  {
+    "mapID": 191,
+    "mapDescription": "CPSNetworks2021_2022",
+    "mapName": "NETWORK_ES",
+    "year": 2023,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2025-09-29T10:12:09.607"
+  },
+  {
+    "mapID": 194,
+    "mapDescription": "Units_2025_26_02112026-2",
+    "mapName": "SCHOOL",
+    "year": 2026,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2026-03-23T15:44:18.35"
+  },
+  {
+    "mapID": 195,
+    "mapDescription": "Units_2025_26_02112026-2",
+    "mapName": "CPS_PREK",
+    "year": 2026,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2026-03-23T15:52:16.56"
+  },
+  {
+    "mapID": 196,
+    "mapDescription": "ERSB_2024_04102026",
+    "mapName": "ERSB",
+    "year": 2026,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2026-05-07T11:32:28.187"
+  },
+  {
+    "mapID": 202,
+    "mapDescription": "DataForKML_Geocoded_v2_UpdatedFields",
+    "mapName": "MEAL",
+    "year": 2025,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2026-06-22T13:53:30.85"
+  },
+  {
+    "mapID": 203,
+    "mapDescription": "DFSS_Sites_ExportFeatures",
+    "mapName": "DFSS",
+    "year": 2026,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2026-07-20T11:28:32"
+  },
+  {
+    "mapID": 219,
+    "mapDescription": "WARDS_2023_FINAL",
+    "mapName": "WARD",
+    "year": 2024,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2026-08-27T15:59:51.36"
+  },
+  {
+    "mapID": 220,
+    "mapDescription": "Census_Tract_Tier_FY25_for_FY27_ITS_Singlepart",
+    "mapName": "TIER",
+    "year": 2027,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2026-09-03T10:19:15.677"
+  },
+  {
+    "mapID": 221,
+    "mapDescription": "Units2026_27",
+    "mapName": "SCHOOL",
+    "year": 2027,
+    "xmlns": "http://www.opengis.net/kml/2.2",
+    "lastUpdated": "2026-09-16T11:27:58.693"
+  }
+]

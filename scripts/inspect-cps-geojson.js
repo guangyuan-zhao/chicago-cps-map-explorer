@@ -6,7 +6,18 @@ const testLayers = [
     { mapName: 'BOUNDARY_HS', year: 2026 },
     { mapName: 'TIER', year: 2027 },
     { mapName: 'SCHOOL', year: 2027 },
-    { mapName: 'NETWORK_ES', year: 2023 }
+    { mapName: 'NETWORK_ES', year: 2023 },
+
+    // New overlay datasets to inspect
+    { mapName: 'COMMUNITY', year: 2020 },
+    { mapName: 'ZIP', year: 2020 },
+    { mapName: 'SAFE', year: 2023 },
+    { mapName: 'BOUNDARY_CS', year: 2023 },
+    { mapName: 'HOUSE', year: 2021 },
+    { mapName: 'SENATE', year: 2021 },
+    { mapName: 'CONGRESSIONAL', year: 2021 },
+    { mapName: 'WARD', year: 2024 },
+    { mapName: 'LSC', year: 2022 }
 ];
 
 async function inspectLayer({ mapName, year }) {
