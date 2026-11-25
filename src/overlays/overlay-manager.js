@@ -336,18 +336,6 @@ export async function showOverlay(map, overlayId) {
         filter
     );
 
-    if (
-        overlayId === 'elementary-networks' ||
-        overlayId === 'high-school-networks'
-    ) {
-        console.log(`${overlay.name} sample properties:`);
-        console.table(
-            filteredData.features
-                .slice(0, 3)
-                .map(feature => feature.properties)
-        );
-    }
-
     if (filteredData.features.length === 0) {
         console.warn(`No features found for ${overlay.name}.`);
         return;
@@ -441,13 +429,9 @@ export async function toggleOverlay(map, overlayId, enabled) {
  * Hide all active overlays.
  */
 export function clearAllOverlays() {
-
-    for (const [overlayId, layer] of activeLayers) {
-
-        layer.setMap(null);
-
-        console.log(`Overlay cleared: ${overlayId}`);
+    for (const overlayId of [...activeLayers.keys()]) {
+        hideOverlay(overlayId);
     }
 
-    activeLayers.clear();
+    console.log('All overlays cleared.');
 }
